@@ -12,23 +12,12 @@ namespace My_Game
 		return y*ncols + x;
 	}
 
-	void populate_Map_Example(Grid::Grid *g)
-	{
-		for (int y = 0; y < g->n_rows; y++)
-		{
-			for (int x = 0; x < g->n_cols; x++)
-			{
-				g->data[m(x, y, g->n_cols)] = rand() % 3;
-			}
-		}
-	}
 
 	void random_Walk_Step(Grid::Point *p, Grid::Grid *g)
 	{
 		switch (rand() % 4)
 		{
-
-
+			
 		}
 
 		g->data[m(p->x, p->y, g->n_cols)] = 1;
@@ -47,6 +36,9 @@ namespace My_Game
 		Grid::Grid map;
 
 		Grid_Camera::Grid_Camera camera;
+		
+		//World::data;
+		//World::display_map;
 
 	}
 
@@ -65,6 +57,8 @@ namespace My_Game
 		Grid::init(&World::map, 48, 64);
 
 		Grid_Camera::init(&World::camera, Engine::screen_width, Engine::screen_height);
+
+
 	
 	}
 
@@ -79,6 +73,8 @@ namespace My_Game
 
 		World::current_position.x = World::map.n_cols / 2;
 		World::current_position.y = World::map.n_rows / 2;
+
+
 	}
 
 	void update(unsigned int current_time, float dt)
@@ -89,6 +85,7 @@ namespace My_Game
 
 		random_Walk_Step(&World::current_position, &World::map);
 
+		
 	}
 
 	void draw(unsigned int current_time)
@@ -97,8 +94,11 @@ namespace My_Game
 
 		Tileset::draw_Grid(&World::tileset, &World::camera, &World::map, &RGBA::default, Engine::renderer);
 
+
+
 		//flip buffers
 		SDL_RenderPresent(Engine::renderer);
 	}
 
+	return 0;
 }
